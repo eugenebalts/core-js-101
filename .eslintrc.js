@@ -16,10 +16,5 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
-    "linebreak-style": 0,
-    semi: ["error", "always"],
-    'no-plusplus': ["error", { "allowForLoopAfterthoughts": true }],
-    'no-unused-expressions': ["error", { "allowShortCircuit": true }],
-    "no-param-reassign": 0
   },
 };

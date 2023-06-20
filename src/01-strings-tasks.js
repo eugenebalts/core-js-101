@@ -128,10 +128,11 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
+  let localStr = str;
   if (str.match(value)) {
-    str = str.replace(value, '');
+    localStr = str.replace(value, '');
   }
-  return str;
+  return localStr;
 }
 
 /**
@@ -147,7 +148,7 @@ function removeFirstOccurrences(str, value) {
  */
 function unbracketTag(str) {
   const result = [];
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i += 1) {
     if (!(str[i] === '<' || str[i] === '>')) {
       result.push(str[i]);
     }
@@ -236,7 +237,7 @@ function getRectangleString(/* width, height */) {
 function encodeToRot13(str) {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const result = [];
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i += 1) {
     if (alphabet.indexOf(str[i].toUpperCase()) < 13
     && alphabet.indexOf(str[i].toUpperCase()) !== -1) {
       const currentSymbolIndex = alphabet[alphabet.indexOf(str[i].toUpperCase())];
