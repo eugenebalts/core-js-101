@@ -35,8 +35,8 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  return Array.from({ length: len }, (_, index) => 2 * index + 1);
 }
 
 
@@ -102,8 +102,9 @@ function getArrayOfStrings(arr) {
  *    [ 1, 2, 3, 4, 5, 'false' ]         => [ 1, 2, 3, 4, 5, 'false' ]
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+function removeFalsyValues(arr) {
+  const falsy = [false, null, 0, '', undefined, NaN];
+  return arr.filter((item) => !falsy.includes(item));
 }
 
 /**
@@ -414,8 +415,8 @@ function getFalsyValuesCount(arr) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurrences(arr, find) {
+  return arr.filter((item) => item === find).length;
 }
 
 /**
@@ -597,8 +598,22 @@ function distinct(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  const result = new Map();
+
+  array.map((item) => {
+    const key = keySelector(item);
+    const value = valueSelector(item);
+
+    if (result.has(key)) {
+      result.get(key).push(value);
+    } else {
+      result.set(key, [value]);
+    }
+    return item;
+  });
+
+  return result;
 }
 
 
@@ -655,8 +670,19 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const result = [];
+  const length = Math.floor(arr.length);
+  const middleElement = Math.floor(length / 2);
+  if (length < 2) {
+    result.push(...arr);
+  } else if (length % 2 === 0) {
+    result.push(...arr.slice(length / 2, length), ...arr.slice(0, (length / 2)));
+  } else {
+    result.push(...arr.slice((length / 2) + 1, length), arr[middleElement],
+      ...arr.slice(0, (length / 2)));
+  }
+  return result;
 }
 
 
